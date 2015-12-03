@@ -85,3 +85,26 @@ nil
 
 (conj #{:rabbit :door} :jam)
 (disj #{:rabbit :door} :door)
+
+; Lists Are the Heart of Clojure
+'("marmalade-jar" "empty-jar" "pickle-jam-jar")
+("marmalade-jar" "empty-jar" "pickle-jam-jar")
+'(+ 1 1)
+(first '(+ 1 1)) ; Code is data!
+
+; Symbols and the Art of Binding
+[1 2 3 4]
+(def developer "Alice")
+developer
+wonderland.chapter-1/developer
+
+(let [developer "Alice in Wonderland"]
+  developer)
+developer
+
+(let [developer "Alice in Wonderland"
+      rabbit "white Rabbit"]
+  [developer rabbit])
+
+rabbit
+; Remeber, what happens in a let, stays in the let
