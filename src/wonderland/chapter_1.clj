@@ -108,3 +108,66 @@ developer
 
 rabbit
 ; Remeber, what happens in a let, stays in the let
+
+; Create Our Own Functions
+(defn follow-the-rabbit [] "Off we go!")
+(follow-the-rabbit)
+
+(defn shop-for-jams [jam1 jam2]
+  {:name "jam-basket"
+   :jam1 jam1
+   :jam2 jam2})
+
+(shop-for-jams "strawberry" "marmalade")
+
+(fn [] (str "Off we go" "!"))
+((fn [] (str "Off we go" "!")))
+
+(def follow-again (fn [] (str "Off we go" "!")))
+(follow-again)
+(#(str "Off we go" "!"))
+(#(str "Off we go" "!" " - " %) "again")
+(#(str "Off we go" "!" " - " %1 %2) "again" "?")
+
+; Keep Your Symbols Organized in Namespaces
+(ns alice.favfoods)
+; earmuffs
+*ns*
+
+(def fav-food "strawberr jam")
+fav-food
+alice.favfoods/fav-food
+
+(ns rabbit.favfoods)
+fav-food
+(def fav-food "lettuce soup")
+fav-food
+alice.favfoods/fav-food
+
+(clojure.set/union #{:r :b :w} #{:w :p :y})
+
+(require 'clojure.set)
+
+(ns wonderland)
+(require '[alice.favfoods :as af])
+af/fav-food
+
+(ns wonderland
+  (:require [alice.favfoods :as af]))
+af/fav-food
+
+(ns wonderland
+  (:require [alice.favfoods :refer :all]
+            [rabbit.favfoods :refer :all]))
+
+(ns wonderland
+  (:require [clojure.set :as s]))
+
+(defn common-fav-foods [foods1 foods2]
+  (let [food-set1 (set foods1)
+        food-set2 (set foods2)
+        common-foods (s/intersection food-set1 food-set2)]
+    (str "Common Foods: " common-foods)))
+
+ (common-fav-foods [:jam :brownies :toast]
+                  [:lettuce :carrots :jam])
